@@ -1,4 +1,6 @@
 from asyncio import as_completed
+
+from helpers.bs4_parser import BeautifulSoupParser
 from helpers.four_devs import FourDevs
 from models.company import CompanyModel
 from models.person import PersonModel
@@ -32,7 +34,8 @@ if __name__ == '__main__':
 
         for company in companies:
             if company:
-                data = CompanyModel(**company[0])
+                data = BeautifulSoupParser.parseHtml(company)
+                data = CompanyModel(data)
                 data.save()
                 print(f'Company {data.nome} saved')
 
