@@ -29,15 +29,17 @@ if __name__ == '__main__':
         for person in persons:
             if person:
                 data = PersonModel(**person[0])
-                data.save()
-                print(f'Person {data.nome} saved')
+                if data:
+                    data.save()
+                    print(f'Person {data.nome} saved')
 
         for company in companies:
             if company:
                 data = BeautifulSoupParser.parseHtml(company)
                 data = CompanyModel(**data)
-                data.save()
-                print(f'Company {data.nome} saved')
+                if data:
+                    data.save()
+                    print(f'Company {data.nome} saved')
 
     except Exception as e:
         print(e)
