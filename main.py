@@ -35,7 +35,7 @@ if __name__ == '__main__':
         for company in companies:
             if company:
                 data = BeautifulSoupParser.parseHtml(company)
-                data = CompanyModel(data)
+                data = CompanyModel(**data)
                 data.save()
                 print(f'Company {data.nome} saved')
 
