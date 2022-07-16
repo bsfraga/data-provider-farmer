@@ -36,10 +36,11 @@ if __name__ == '__main__':
         for company in companies:
             if company:
                 data = BeautifulSoupParser.parseHtml(company)
-                data = CompanyModel(**data)
-                if data:
-                    data.save()
-                    print(f'Company {data.nome} saved')
+                if isinstance(data, dict) and len(data) > 0:
+                    data = CompanyModel(**data)
+                    if data:
+                        data.save()
+                        print(f'Company {data.nome} saved')
 
     except Exception as e:
         print(e)
